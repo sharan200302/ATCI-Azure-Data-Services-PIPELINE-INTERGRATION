@@ -1,0 +1,49 @@
+                                      synapse external table-pipeline
+
+CREATE EXTERNAL FILE FORMAT  "SynapseDelimitedTextFormat1" - change according to this
+
+
+CREATE EXTERNAL FILE FORMAT SynapseDelimitedTextFormat1
+WITH
+(
+    FORMAT_TYPE = DELIMITEDTEXT,
+    FORMAT_OPTIONS
+    (
+        FIELD_TERMINATOR = ',',
+        USE_TYPE_DEFAULT = FALSE
+    )
+);
+GO
+
+
+LOACTION WILL BE CHANGED ACCORDING TO BLOB
+
+CREATE EXTERNAL DATA SOURCE NYCPayrollDS1
+WITH
+(
+    LOCATION = 'https://nycpayrollsynapse.blob.core.windows.net/nycpayroll' 
+);
+GO
+
+
+
+here  location="""" change accrding to blob and data source too
+
+
+CREATE EXTERNAL TABLE dbo.NYC_Payroll_Summary1
+(
+    FiscalYear INT,
+    AgencyName VARCHAR(50),
+    TotalPaid FLOAT
+)
+WITH
+(
+    LOCATION = '/dirstaging/',
+    DATA_SOURCE = NYCPayrollDS1,
+    FILE_FORMAT = SynapseDelimitedTextFormat
+);
+GO
+
+
+
+
